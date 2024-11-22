@@ -12,7 +12,10 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "types": ["element-plus/global"],
+    "types": [
+      "element-plus/global",
+      "node"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

@@ -29,4 +29,17 @@ export const sendCode = (phone: string) => {
 
 export const phoneLogin = (data: PhoneLoginParams) => {
   return request.post<LoginResult>('/auth/phoneLogin', data)
+}
+
+// 社交登录类型
+export type SocialType = 'wechat' | 'feishu'
+
+// 获取社交登录二维码
+export const getSocialQrCode = (type: SocialType) => {
+  return request.get<{ qrCode: string, state: string }>(`/auth/${type}/qrcode`)
+}
+
+// 检查扫码状态
+export const checkScanStatus = (type: SocialType, state: string) => {
+  return request.get<LoginResult>(`/auth/${type}/check`, { params: { state } })
 } 

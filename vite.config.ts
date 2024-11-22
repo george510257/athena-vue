@@ -1,23 +1,26 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { fileURLToPath } from 'url'
+import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': path.resolve(__dirname, './src')
     }
   },
   server: {
-    host: true,
     port: 3000,
     open: true
   },
   css: {
     preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@/styles/_variables.scss" as *;`
+      less: {
+        javascriptEnabled: true,
+        additionalData: `
+          @import "@/styles/variables.less";
+          @import "@/styles/animation.less";
+        `
       }
     }
   }
